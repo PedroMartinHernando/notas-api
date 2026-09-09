@@ -28,7 +28,7 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "sqlite3": "^6.0.1",
-    "typeorm": "^1.1.1"
+    "typeorm": "^0.3.31"
   },
   "devDependencies": {
     "@nestjs/cli": "^12.0.0",
@@ -49,5 +49,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^6.0.2"
+  },
+  "allowScripts": {
+    "sqlite3@6.0.1": true,
+    "unrs-resolver@1.12.2": true,
+    "@parcel/watcher@2.6.0": true
   }
 }

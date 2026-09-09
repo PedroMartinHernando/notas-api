@@ -10,3 +10,4 @@ export class Note {
 
     @Column({default: false})
     done: boolean;
+}
