@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Patch, Param } from '@nestjs/common';
 import { NotesService } from './notes.service';
 
 @Controller('notes')
@@ -13,5 +13,10 @@ export class NotesController {
     @Get()
     findAll(){
         return this.notesService.findAll();
+    }
+
+    @Patch(':id')
+    markAsDone(@Param('id') id: number){
+        return this.notesService.markAsDone(Number(id));
     }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Note } from './note.entity';
 import { Repository } from 'typeorm';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class NotesService {
@@ -16,5 +17,14 @@ export class NotesService {
     async create(title:string): Promise<Note> {
         const note = this.notesRepository.create({title, done: false});
         return this.notesRepository.save(note);
+    }
+
+    async markAsDone(id: number): Promise<Note> {
+        await this.notesRepository.update(id, {done: true});
+        const note = await this.notesRepository.findOne({where: {id}});
+        if (!note) {
+            throw new NotFoundException(`Note with id ${id} not found`);
+        }
+        return note;
     }
 }
