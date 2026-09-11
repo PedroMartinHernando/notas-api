@@ -1,5 +1,6 @@
-import { Controller, Post, Body, Get, Patch, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Patch, Param, Delete } from '@nestjs/common';
 import { NotesService } from './notes.service';
+import { HttpCode } from '@nestjs/common';
 
 @Controller('notes')
 export class NotesController {
@@ -18,5 +19,11 @@ export class NotesController {
     @Patch(':id')
     markAsDone(@Param('id') id: number){
         return this.notesService.markAsDone(Number(id));
+    }
+
+    @Delete(':id')
+    @HttpCode(204)
+    remove(@Param('id') id: number): Promise<void>{
+        return this.notesService.remove(Number(id));
     }
 }
